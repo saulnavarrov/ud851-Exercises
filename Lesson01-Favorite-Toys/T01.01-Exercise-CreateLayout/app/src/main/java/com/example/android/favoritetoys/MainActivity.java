@@ -17,18 +17,25 @@ package com.example.android.favoritetoys;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView txtActivity;
+    private String TAG = "-MaintActivity";
+    private TextView txtActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtActivity = (TextView) findViewById(R.id.txtHolaMundo);
-        txtActivity.setText("Hola mundo desde codigo de MainActivity");
+        txtActivity = (TextView) findViewById(R.id.tv_toy_names);
+        String[] toysNames = ToyBox.getToyNames();
+
+
+        for(String toysName : toysNames) {
+            txtActivity.setText(toysName + "\n\n\n");
+            Log.i(TAG, "onCreate: " + toysName);
+        }
     }
 }
